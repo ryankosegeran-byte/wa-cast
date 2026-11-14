@@ -1,4 +1,25 @@
 <resources>
     <string name="app_name">WhatsApp Cast</string>
-    <string name="placeholder_body">WhatsApp Cast\nScaffold ready.</string>
+    <string name="app_tagline">Template WhatsApp cepat, tanpa backend</string>
+
+    <!-- Bottom Navigation Tabs -->
+    <string name="nav_templates">Template</string>
+    <string name="nav_compose">Susun</string>
+    <string name="nav_preview">Pratinjau</string>
+    <string name="nav_contacts">Kontak</string>
+    <string name="nav_send">Kirim</string>
+
+    <!-- Overflow Menu -->
+    <string name="menu_lang">Bahasa (EN/ID)</string>
+    <string name="menu_theme">Ganti Tema</string>
+    <string name="menu_export">Ekspor cadangan</string>
+    <string name="menu_import">Impor cadangan</string>
+    <string name="menu_import_contacts">Impor CSV / VCF</string>
+    <string name="menu_contacts">Kelola Kontak</string>
+    <string name="menu_help">Bantuan</string>
+    <string name="menu_about">Tentang</string>
+
+    <!-- Common UI -->
+    <string name="dismiss">Tutup</string>
+    <string name="coming_soon">Fitur ini akan aktif pada paket pengerjaan berikutnya.</string>
 </resources>

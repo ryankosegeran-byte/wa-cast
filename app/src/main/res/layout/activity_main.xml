@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
@@ -9,16 +10,67 @@
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:background="?attr/colorPrimary"
-        android:title="@string/app_name"
-        android:titleTextColor="@color/white" />
+        app:title="@string/app_name"
+        app:subtitle="@string/app_tagline"
+        app:titleTextColor="@color/white"
+        app:subtitleTextColor="#D1FAE5" />
 
-    <!-- Placeholder shell. Replaced by the Template / Compose / Preview / Contacts / Send screens. -->
-    <TextView
-        android:id="@+id/placeholder"
+    <!-- Notice / Alert Banner -->
+    <LinearLayout
+        android:id="@+id/notice_banner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#FEF3C7"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingStart="12dp"
+        android:paddingTop="8dp"
+        android:paddingEnd="8dp"
+        android:paddingBottom="8dp"
+        android:visibility="gone">
+
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:contentDescription="@null"
+            android:src="@drawable/ic_alert"
+            app:tint="#B45309" />
+
+        <TextView
+            android:id="@+id/tv_notice"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_weight="1"
+            android:textColor="#78350F"
+            android:textSize="13sp" />
+
+        <ImageButton
+            android:id="@+id/btn_dismiss_notice"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="@string/dismiss"
+            android:src="@drawable/ic_close"
+            app:tint="#B45309" />
+    </LinearLayout>
+
+    <!-- Main Tab Content Area -->
+    <FrameLayout
+        android:id="@+id/fragment_container"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"
-        android:gravity="center"
-        android:padding="24dp"
-        android:text="@string/placeholder_body" />
+        android:layout_weight="1" />
+
+    <!-- Bottom Navigation Tabs -->
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottom_nav"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?android:attr/windowBackground"
+        app:elevation="8dp"
+        app:labelVisibilityMode="labeled"
+        app:menu="@menu/bottom_nav_menu" />
+
 </LinearLayout>
