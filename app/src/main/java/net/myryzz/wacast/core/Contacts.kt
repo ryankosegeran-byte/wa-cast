@@ -207,3 +207,27 @@ fun uniqueLabels(contacts: List<Contact>): List<String> {
     for (c in contacts) for (l in c.labels) if (l.isNotEmpty()) set.add(l)
     return set.toList()
 }
+
+/** Filter contacts by search query and label/group. */
+fun filterContacts(
+    contacts: List<Contact>,
+    query: String = "",
+    groupFilter: String = ""
+): List<Contact> {
+    val q = query.trim().lowercase()
+    return contacts.filter { c ->
+        val matchesGroup = when (groupFilter) {
+            "", "__all__" -> true
+            "__none__" -> c.labels.isEmpty()
+            else -> c.labels.contains(groupFilter)
+        }
+        val matchesQuery = if (q.isEmpty()) {
+            true
+        } else {
+            c.name.lowercase().contains(q) ||
+            c.phone.lowercase().contains(q) ||
+            c.labels.any { it.lowercase().contains(q) }
+        }
+        matchesGroup && matchesQuery
+    }
+}

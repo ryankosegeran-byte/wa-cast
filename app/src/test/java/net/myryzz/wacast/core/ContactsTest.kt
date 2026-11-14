@@ -140,4 +140,20 @@ class ContactsTest {
         assertEquals("", phoneOnly.name)
         assertTrue(phoneOnly.values.isEmpty())
     }
+
+    @Test
+    fun testFilterContacts() {
+        val list = listOf(
+            Contact(phone = "628111", name = "Budi Santoso", labels = mutableListOf("VIP", "Jakarta")),
+            Contact(phone = "628222", name = "Siti Aminah", labels = mutableListOf("Surabaya")),
+            Contact(phone = "628333", name = "Agus", labels = mutableListOf())
+        )
+
+        assertEquals(3, filterContacts(list).size)
+        assertEquals(listOf("628111"), filterContacts(list, query = "budi").map { it.phone })
+        assertEquals(listOf("628111"), filterContacts(list, groupFilter = "VIP").map { it.phone })
+        assertEquals(listOf("628333"), filterContacts(list, groupFilter = "__none__").map { it.phone })
+        assertEquals(listOf("628111"), filterContacts(list, query = "jakarta", groupFilter = "VIP").map { it.phone })
+        assertEquals(emptyList<String>(), filterContacts(list, query = "bandung").map { it.phone })
+    }
 }

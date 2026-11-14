@@ -94,4 +94,33 @@
     <string name="unresolved_vars_warning">Variabel belum terisi: %s</string>
     <string name="chars_count">%d karakter</string>
     <string name="no_message_body">(Template belum memiliki isi pesan)</string>
+    <!-- Contacts Screen -->
+    <string name="contact_search_hint">Cari kontak (nama, nomor, grup)...</string>
+    <string name="new_contact">Tambah Kontak</string>
+    <string name="edit_contact">Edit Kontak</string>
+    <string name="contact_name">Nama kontak</string>
+    <string name="contact_phone">Nomor WhatsApp (misal: 0812...)</string>
+    <string name="contact_labels">Grup / Label</string>
+    <string name="contact_labels_hint">Pisahkan label dengan koma</string>
+    <string name="no_contacts">Belum ada kontak</string>
+    <string name="no_contacts_desc">Tambah atau impor kontak untuk mulai mengirim pesan.</string>
+    <string name="no_matching_contacts">Tidak ada kontak yang cocok.</string>
+    <string name="delete_contact_confirm">Hapus kontak ini?</string>
+    <string name="delete_contact_desc">Kontak %1$s (%2$s) akan dihapus dari daftar penerima.</string>
+    <string name="contact_saved">Kontak berhasil disimpan.</string>
+    <string name="contact_deleted">Kontak dihapus.</string>
+    <string name="manage_contact_groups">Kelola Grup Kontak</string>
+    <string name="phone_invalid">Nomor telepon harus diawali 0 atau 62 dan memiliki 8-15 digit.</string>
+    <string name="phone_exists">Nomor telepon ini sudah terdaftar.</string>
+    <string name="contacts_count">%d kontak</string>
+    <string name="all_labels">Semua grup</string>
+    <string name="no_label">Tanpa grup</string>
+    <string name="batch_delete">Hapus</string>
+    <string name="batch_assign">Beri Grup</string>
+    <string name="selected_count">%d dipilih</string>
+    <string name="select_all">Pilih Semua</string>
+    <string name="clear_selection">Batal Pilih</string>
+    <string name="confirm_batch_delete">Hapus %d kontak terpilih?</string>
+    <string name="batch_deleted">%d kontak dihapus.</string>
+    <string name="custom_values_title">Nilai Variabel untuk Template Ini</string>
 </resources>
