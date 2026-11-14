@@ -1,5 +1,7 @@
 package net.myryzz.wacast
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
@@ -7,15 +9,28 @@ import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
+import androidx.core.content.FileProvider
 import androidx.fragment.app.Fragment
+import net.myryzz.wacast.core.Json
+import net.myryzz.wacast.core.mergeStates
+import net.myryzz.wacast.core.nowIso
+import net.myryzz.wacast.core.validateState
 import net.myryzz.wacast.databinding.ActivityMainBinding
 import net.myryzz.wacast.ui.compose.ComposeFragment
 import net.myryzz.wacast.ui.contacts.ContactsFragment
+import net.myryzz.wacast.ui.dialog.ExportDialog
+import net.myryzz.wacast.ui.dialog.ImportDialog
 import net.myryzz.wacast.ui.preview.PreviewFragment
 import net.myryzz.wacast.ui.send.SendFragment
 import net.myryzz.wacast.ui.templates.TemplatesFragment
+import org.json.JSONObject
+import java.io.File
+import java.text.SimpleDateFormat
+import java.util.Date
+import java.util.Locale
 
 class MainActivity : AppCompatActivity() {
 
@@ -27,6 +42,22 @@ class MainActivity : AppCompatActivity() {
     }
 
     private var activeFragmentTag: String = TAG_TEMPLATES
+
+    private val exportDocumentLauncher = registerForActivityResult(
+        ActivityResultContracts.CreateDocument("application/json")
+    ) { uri: Uri? ->
+        if (uri != null) {
+            saveBackupToUri(uri)
+        }
+    }
+
+    private val importDocumentLauncher = registerForActivityResult(
+        ActivityResultContracts.OpenDocument()
+    ) { uri: Uri? ->
+        if (uri != null) {
+            handleImportUri(uri)
+        }
+    }
 
     private val repositoryListener = {
         runOnUiThread {
@@ -110,8 +141,17 @@ class MainActivity : AppCompatActivity() {
                 binding.bottomNav.selectedItemId = R.id.nav_contacts
                 true
             }
-            R.id.action_export,
-            R.id.action_import,
+            R.id.action_export -> {
+                ExportDialog.newInstance(
+                    onSaveFile = { launchSaveBackup() },
+                    onShare = { shareBackup() }
+                ).show(supportFragmentManager, ExportDialog.TAG)
+                true
+            }
+            R.id.action_import -> {
+                importDocumentLauncher.launch(arrayOf("application/json", "text/*", "*/*"))
+                true
+            }
             R.id.action_import_contacts,
             R.id.action_help,
             R.id.action_about -> {
@@ -120,6 +160,101 @@ class MainActivity : AppCompatActivity() {
             }
             else -> super.onOptionsItemSelected(item)
         }
+    }
+
+    private fun launchSaveBackup() {
+        val dateStr = SimpleDateFormat("yyyy-MM-dd", Locale.US).format(Date())
+        exportDocumentLauncher.launch("wa-broadcast-backup-$dateStr.json")
+    }
+
+    private fun saveBackupToUri(uri: Uri) {
+        try {
+            val state = AppRepository.state.copy(updatedAt = nowIso())
+            val jsonString = Json.encode(state)
+            contentResolver.openOutputStream(uri)?.use { os ->
+                os.write(jsonString.toByteArray(Charsets.UTF_8))
+                os.flush()
+            }
+            AppRepository.postNotice(getString(R.string.export_done))
+        } catch (_: Exception) {
+            AppRepository.postNotice(getString(R.string.export_failed))
+        }
+    }
+
+    private fun shareBackup() {
+        try {
+            val dateStr = SimpleDateFormat("yyyy-MM-dd", Locale.US).format(Date())
+            val filename = "wa-broadcast-backup-$dateStr.json"
+            val exportDir = File(cacheDir, "export").apply { mkdirs() }
+            val file = File(exportDir, filename)
+            val state = AppRepository.state.copy(updatedAt = nowIso())
+            file.writeText(Json.encode(state), Charsets.UTF_8)
+
+            val uri = FileProvider.getUriForFile(this, "${packageName}.fileprovider", file)
+            val shareIntent = Intent(Intent.ACTION_SEND).apply {
+                type = "application/json"
+                putExtra(Intent.EXTRA_STREAM, uri)
+                putExtra(Intent.EXTRA_SUBJECT, filename)
+                addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
+            }
+            startActivity(Intent.createChooser(shareIntent, getString(R.string.export_share)))
+        } catch (_: Exception) {
+            AppRepository.postNotice(getString(R.string.export_failed))
+        }
+    }
+
+    private fun handleImportUri(uri: Uri) {
+        val jsonText = try {
+            contentResolver.openInputStream(uri)?.use { stream ->
+                stream.bufferedReader(Charsets.UTF_8).readText()
+            }
+        } catch (_: Exception) {
+            AppRepository.postNotice(getString(R.string.import_bad_file))
+            return
+        }
+
+        if (jsonText.isNullOrBlank()) {
+            AppRepository.postNotice(getString(R.string.import_bad_file))
+            return
+        }
+
+        val parsed = try {
+            JSONObject(jsonText)
+        } catch (_: Exception) {
+            AppRepository.postNotice(getString(R.string.import_not_json))
+            return
+        }
+
+        val result = validateState(parsed)
+        if (!result.ok || result.data == null || result.counts == null) {
+            val errorMsg = when (result.error) {
+                "newer" -> getString(R.string.import_newer)
+                "phone" -> getString(R.string.import_phone_invalid)
+                else -> getString(R.string.import_not_json)
+            }
+            AppRepository.postNotice(errorMsg)
+            return
+        }
+
+        val incomingData = result.data
+        val counts = result.counts
+
+        ImportDialog.newInstance(
+            counts = counts,
+            onMerge = {
+                mergeStates(AppRepository.state, incomingData)
+                AppRepository.saveNow()
+                AppRepository.notifyChanged()
+                AppRepository.postNotice(getString(R.string.import_done))
+            },
+            onReplace = {
+                AppRepository.setState(incomingData)
+                AppRepository.postNotice(getString(R.string.import_done))
+            },
+            onExportFirst = {
+                launchSaveBackup()
+            }
+        ).show(supportFragmentManager, ImportDialog.TAG)
     }
 
     private fun setupNoticeBanner() {

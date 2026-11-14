@@ -189,4 +189,27 @@ class StorageTest {
         assertEquals(state.groups, once.groups)
         assertEquals(state.templateGroups, once.templateGroups)
     }
+
+    @Test
+    fun testValidateStateCounts() {
+        val json = JSONObject(
+            """
+            {
+              "schemaVersion": 5,
+              "templates": [{"id":"t1","name":"T1","body":"Hello"}],
+              "contacts": [{"id":"c1","phone":"08123456789","name":"Budi","labels":["VIP"]}],
+              "groups": [{"id":"g1","name":"VIP"}],
+              "templateGroups": []
+            }
+            """.trimIndent()
+        )
+        val res = validateState(json)
+        assertTrue(res.ok)
+        val counts = res.counts!!
+        assertEquals(1, counts.templates)
+        assertEquals(1, counts.contacts)
+        assertEquals(1, counts.labels)
+        assertEquals(1, counts.groups)
+        assertEquals(0, counts.templateGroups)
+    }
 }

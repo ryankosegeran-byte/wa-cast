@@ -140,4 +140,24 @@
     <string name="progress_ratio">%1$d dari %2$d terkirim (%3$d%%)</string>
     <string name="no_contacts_queue">Tidak ada kontak dalam antrean.</string>
     <string name="url_too_long_warning">Pesan sangat panjang (%d karakter). Beberapa versi WhatsApp mungkin memotongnya.</string>
+
+    <!-- Backup Export & Import (WP7) -->
+    <string name="export_backup_title">Ekspor Cadangan</string>
+    <string name="export_backup_desc">Cadangkan seluruh template, variabel, kontak, dan riwayat kirim ke file JSON.</string>
+    <string name="export_save_file">Simpan ke File</string>
+    <string name="export_share">Bagikan File</string>
+    <string name="export_done">Cadangan berhasil diekspor.</string>
+    <string name="export_failed">Gagal mengekspor file cadangan.</string>
+    <string name="import_backup_title">Impor Cadangan</string>
+    <string name="import_found_info">File berisi %1$d template, %2$d kontak, dan %3$d label grup.</string>
+    <string name="import_replace_warn">Ganti semua menghapus data lokal lebih dulu. Tindakan ini tidak dapat dibatalkan.</string>
+    <string name="import_merge">Gabung (Merge)</string>
+    <string name="import_replace">Ganti Semua (Replace)</string>
+    <string name="export_first">Ekspor Dulu</string>
+    <string name="import_done">Impor cadangan selesai.</string>
+    <string name="import_failed">Gagal mengimpor cadangan.</string>
+    <string name="import_bad_file">File tidak bisa dibaca.</string>
+    <string name="import_not_json">File itu bukan format cadangan yang valid.</string>
+    <string name="import_newer">Cadangan ini dibuat oleh versi aplikasi yang lebih baru.</string>
+    <string name="import_phone_invalid">File cadangan memuat nomor telepon yang tidak valid.</string>
 </resources>
