@@ -4,7 +4,9 @@ import net.myryzz.wacast.model.Contact
 import net.myryzz.wacast.model.Template
 
 /** Matches `{{ key }}` tokens. Mirrors the web app's `VAR_RE`. */
-private val VAR_RE = Regex("""\{\{\s*([\w.-]+)\s*}}""")
+// Both braces escaped: Android's ICU regex rejects a bare `}` at construction
+// (OpenJDK accepts it), which crashed class init on device. Coverage: VarsTest.
+internal val VAR_RE = Regex("""\{\{\s*([\w.-]+)\s*\}\}""")
 
 private val VAR_KEY_RE = Regex("""^[\w.-]+$""")
 

@@ -358,7 +358,7 @@ class ComposeFragment : Fragment() {
                 tpl.globals.remove(key)
                 tpl.auto.remove(key)
                 val esc = Regex.escape(key)
-                tpl.body = Regex("""\{\{\s*$esc\s*}}""").replace(tpl.body, "")
+                tpl.body = Regex("""\{\{\s*$esc\s*\}\}""").replace(tpl.body, "")
                 tpl.updatedAt = nowIso()
                 AppRepository.scheduleSave()
 

@@ -4,6 +4,7 @@ import net.myryzz.wacast.model.Contact
 import net.myryzz.wacast.model.Template
 import net.myryzz.wacast.model.TemplateVar
 import org.junit.Assert.assertEquals
+import org.junit.Assert.assertFalse
 import org.junit.Test
 
 class VarsTest {
@@ -117,5 +118,13 @@ class VarsTest {
     fun testUnresolvedVariables() {
         val unresolved = unresolvedVariables("Halo {{nama}}, tagihan {{total}} dan kode {{promo}}", contact, template)
         assertEquals(listOf("promo"), unresolved)
+    }
+
+    @Test
+    fun varPatternEscapesClosingBraces() {
+        // Android's ICU regex throws PatternSyntaxException on a bare '}' at class
+        // init (OpenJDK does not), which crashed ComposeFragment on device. Keep both escaped.
+        assertEquals("""\{\{\s*([\w.-]+)\s*\}\}""", VAR_RE.pattern)
+        assertFalse(VAR_RE.pattern.contains("""\s*}}"""))
     }
 }
