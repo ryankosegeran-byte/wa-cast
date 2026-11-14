@@ -21,6 +21,15 @@ import net.myryzz.wacast.core.validateState
 import net.myryzz.wacast.databinding.ActivityMainBinding
 import net.myryzz.wacast.ui.compose.ComposeFragment
 import net.myryzz.wacast.ui.contacts.ContactsFragment
+import android.provider.OpenableColumns
+import net.myryzz.wacast.core.Mapping
+import net.myryzz.wacast.core.guessMapping
+import net.myryzz.wacast.core.mergeContacts
+import net.myryzz.wacast.core.parseCsv
+import net.myryzz.wacast.core.parseVcf
+import net.myryzz.wacast.core.syncGroups
+import net.myryzz.wacast.core.templateVarKeys
+import net.myryzz.wacast.ui.dialog.ContactImportDialog
 import net.myryzz.wacast.ui.dialog.ExportDialog
 import net.myryzz.wacast.ui.dialog.ImportDialog
 import net.myryzz.wacast.ui.preview.PreviewFragment
@@ -56,6 +65,14 @@ class MainActivity : AppCompatActivity() {
     ) { uri: Uri? ->
         if (uri != null) {
             handleImportUri(uri)
+        }
+    }
+
+    private val importContactsLauncher = registerForActivityResult(
+        ActivityResultContracts.OpenDocument()
+    ) { uri: Uri? ->
+        if (uri != null) {
+            handleImportContactsUri(uri)
         }
     }
 
@@ -152,7 +169,10 @@ class MainActivity : AppCompatActivity() {
                 importDocumentLauncher.launch(arrayOf("application/json", "text/*", "*/*"))
                 true
             }
-            R.id.action_import_contacts,
+            R.id.action_import_contacts -> {
+                importContactsLauncher.launch(arrayOf("text/*", "*/*"))
+                true
+            }
             R.id.action_help,
             R.id.action_about -> {
                 Toast.makeText(this, getString(R.string.coming_soon), Toast.LENGTH_SHORT).show()
@@ -255,6 +275,90 @@ class MainActivity : AppCompatActivity() {
                 launchSaveBackup()
             }
         ).show(supportFragmentManager, ImportDialog.TAG)
+    }
+
+    private fun handleImportContactsUri(uri: Uri) {
+        val text = try {
+            contentResolver.openInputStream(uri)?.use { stream ->
+                stream.bufferedReader(Charsets.UTF_8).readText()
+            }
+        } catch (_: Exception) {
+            AppRepository.postNotice(getString(R.string.import_bad_file))
+            return
+        }
+
+        if (text.isNullOrBlank()) {
+            AppRepository.postNotice(getString(R.string.import_file_empty))
+            return
+        }
+
+        var fileName = "contacts.csv"
+        try {
+            contentResolver.query(uri, null, null, null, null)?.use { cursor ->
+                val nameIdx = cursor.getColumnIndex(OpenableColumns.DISPLAY_NAME)
+                if (nameIdx >= 0 && cursor.moveToFirst()) {
+                    fileName = cursor.getString(nameIdx)
+                }
+            }
+        } catch (_: Exception) {}
+
+        val activeTpl = AppRepository.state.templates.firstOrNull { it.id == AppRepository.activeTemplateId }
+        val varKeys = templateVarKeys(activeTpl)
+
+        val isVcf = fileName.endsWith(".vcf", ignoreCase = true) || text.contains("BEGIN:VCARD", ignoreCase = true)
+        val headers: List<String>
+        val dataRows: List<List<String>>
+        val mapping: Mapping
+
+        if (isVcf) {
+            val cards = parseVcf(text)
+            if (cards.isEmpty()) {
+                AppRepository.postNotice(getString(R.string.import_file_empty))
+                return
+            }
+            headers = listOf(getString(R.string.import_map_phone), getString(R.string.import_map_name))
+            dataRows = cards.map { listOf(it.phone, it.name) }
+            mapping = Mapping(phone = 0, name = 1, label = -1)
+        } else {
+            val parsed = parseCsv(text)
+            if (parsed.isEmpty()) {
+                AppRepository.postNotice(getString(R.string.import_file_empty))
+                return
+            }
+            val firstGuess = guessMapping(parsed[0], varKeys)
+            val hasHeader = firstGuess.phone >= 0 ||
+                firstGuess.name >= 0 ||
+                firstGuess.label >= 0 ||
+                firstGuess.vars.values.any { it >= 0 }
+
+            if (hasHeader) {
+                headers = parsed[0]
+                dataRows = parsed.drop(1)
+                mapping = firstGuess
+            } else {
+                val maxCols = parsed.maxOfOrNull { it.size } ?: 1
+                headers = (1..maxCols).map { getString(R.string.import_map_column, it) }
+                dataRows = parsed
+                mapping = guessMapping(headers, varKeys)
+            }
+        }
+
+        ContactImportDialog.newInstance(
+            fileName = fileName,
+            headers = headers,
+            dataRows = dataRows,
+            mapping = mapping,
+            templateId = activeTpl?.id,
+            varKeys = varKeys
+        ) { contacts, badCount ->
+            val result = mergeContacts(AppRepository.state.contacts, contacts)
+            syncGroups(AppRepository.state.groups, AppRepository.state.contacts)
+            AppRepository.saveNow()
+            AppRepository.notifyChanged()
+            AppRepository.postNotice(
+                getString(R.string.import_contacts_done, result.added, result.merged, badCount)
+            )
+        }.show(supportFragmentManager, ContactImportDialog.TAG)
     }
 
     private fun setupNoticeBanner() {

@@ -160,4 +160,19 @@
     <string name="import_not_json">File itu bukan format cadangan yang valid.</string>
     <string name="import_newer">Cadangan ini dibuat oleh versi aplikasi yang lebih baru.</string>
     <string name="import_phone_invalid">File cadangan memuat nomor telepon yang tidak valid.</string>
+
+    <!-- CSV/VCF Contact Import (WP8) -->
+    <string name="import_contacts_title">Impor Kontak CSV / VCF</string>
+    <string name="import_file_empty">Tidak ada baris data dalam file tersebut.</string>
+    <string name="import_map_title">Petakan Kolom</string>
+    <string name="import_map_phone">Nomor Telepon (Wajib)</string>
+    <string name="import_map_name">Nama Kontak</string>
+    <string name="import_map_label">Grup / Label</string>
+    <string name="import_map_ignore">Abaikan</string>
+    <string name="import_map_column">Kolom %d</string>
+    <string name="import_preview_title">Pratinjau Hasil (10 Baris Pertama)</string>
+    <string name="import_action_button">Impor %d Kontak</string>
+    <string name="import_contacts_done">Ditambah %1$d, digabung %2$d, dilewati %3$d.</string>
+    <string name="valid_row">Valid</string>
+    <string name="invalid_row">Nomor Tidak Valid</string>
 </resources>

@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <!-- Header -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/import_contacts_title"
+                android:textAppearance="?attr/textAppearanceHeadline6" />
+
+            <TextView
+                android:id="@+id/tv_import_filename"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:textColor="?android:attr/textColorSecondary"
+                android:textSize="12sp" />
+        </LinearLayout>
+
+        <ImageButton
+            android:id="@+id/btn_close_import"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="@string/dismiss"
+            android:src="@drawable/ic_close"
+            app:tint="?android:attr/textColorSecondary" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:background="#E5E7EB" />
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="360dp"
+        android:clipToPadding="false">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <!-- Mapping Section -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/import_map_title"
+                android:textAppearance="?attr/textAppearanceSubtitle1"
+                android:textStyle="bold" />
+
+            <!-- Phone Map Row -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/import_map_phone"
+                    android:textAppearance="?attr/textAppearanceBody2"
+                    android:textColor="#DC2626"
+                    android:textStyle="bold" />
+
+                <Spinner
+                    android:id="@+id/spinner_map_phone"
+                    android:layout_width="160dp"
+                    android:layout_height="38dp"
+                    android:background="?android:attr/selectableItemBackground" />
+            </LinearLayout>
+
+            <!-- Name Map Row -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/import_map_name"
+                    android:textAppearance="?attr/textAppearanceBody2" />
+
+                <Spinner
+                    android:id="@+id/spinner_map_name"
+                    android:layout_width="160dp"
+                    android:layout_height="38dp"
+                    android:background="?android:attr/selectableItemBackground" />
+            </LinearLayout>
+
+            <!-- Label Map Row -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/import_map_label"
+                    android:textAppearance="?attr/textAppearanceBody2" />
+
+                <Spinner
+                    android:id="@+id/spinner_map_label"
+                    android:layout_width="160dp"
+                    android:layout_height="38dp"
+                    android:background="?android:attr/selectableItemBackground" />
+            </LinearLayout>
+
+            <!-- Dynamic Variables Container -->
+            <LinearLayout
+                android:id="@+id/container_variable_mappings"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="12dp"
+                android:layout_marginBottom="12dp"
+                android:background="#E5E7EB" />
+
+            <!-- Preview 10 Rows -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/import_preview_title"
+                android:textAppearance="?attr/textAppearanceSubtitle2"
+                android:textStyle="bold" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recycler_import_preview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:nestedScrollingEnabled="false" />
+
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="12dp"
+        android:background="#E5E7EB" />
+
+    <!-- Actions -->
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_do_import"
+        style="@style/Widget.MaterialComponents.Button"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:text="@string/new_contact" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_cancel_import"
+        style="@style/Widget.MaterialComponents.Button.TextButton"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginTop="4dp"
+        android:text="@string/cancel" />
+
+</LinearLayout>
