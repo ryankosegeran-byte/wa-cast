@@ -123,4 +123,21 @@
     <string name="confirm_batch_delete">Hapus %d kontak terpilih?</string>
     <string name="batch_deleted">%d kontak dihapus.</string>
     <string name="custom_values_title">Nilai Variabel untuk Template Ini</string>
+
+    <!-- Send Screen -->
+    <string name="send_screen_title">Kirim Broadcast</string>
+    <string name="active_template_card_title">Template Aktif</string>
+    <string name="send_next">Kirim Berikutnya (%1$s)</string>
+    <string name="send_next_generic">Kirim Pesan Berikutnya</string>
+    <string name="all_sent">Semua kontak telah terkirim ✓</string>
+    <string name="reset_sent_status">Reset Status</string>
+    <string name="reset_sent_confirm">Reset status pengiriman?</string>
+    <string name="reset_sent_desc">Status terkirim untuk template ini akan dihapus dari semua kontak.</string>
+    <string name="status_sent">Terkirim</string>
+    <string name="status_pending">Menunggu</string>
+    <string name="resend">Kirim Ulang</string>
+    <string name="send_action">Kirim</string>
+    <string name="progress_ratio">%1$d dari %2$d terkirim (%3$d%%)</string>
+    <string name="no_contacts_queue">Tidak ada kontak dalam antrean.</string>
+    <string name="url_too_long_warning">Pesan sangat panjang (%d karakter). Beberapa versi WhatsApp mungkin memotongnya.</string>
 </resources>
