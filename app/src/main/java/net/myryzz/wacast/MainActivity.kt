@@ -13,6 +13,10 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.content.FileProvider
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
+import androidx.core.view.WindowInsetsControllerCompat
+import androidx.core.view.updatePadding
 import androidx.fragment.app.Fragment
 import net.myryzz.wacast.core.Json
 import net.myryzz.wacast.core.mergeStates
@@ -99,6 +103,7 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         setSupportActionBar(binding.toolbar)
+        applySystemBarInsets()
 
         setupNoticeBanner()
         setupFragments(savedInstanceState)
@@ -113,6 +118,18 @@ class MainActivity : AppCompatActivity() {
         super.onDestroy()
         noticeDismissHandler.removeCallbacks(noticeDismissRunnable)
         AppRepository.removeListener(repositoryListener)
+    }
+
+    /** targetSdk 36 forces edge-to-edge; pad the toolbar for the status bar, BottomNavigationView handles its own. */
+    private fun applySystemBarInsets() {
+        val toolbar = binding.toolbar
+        val basePadTop = toolbar.paddingTop
+        ViewCompat.setOnApplyWindowInsetsListener(toolbar) { view, insets ->
+            val bars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
+            view.updatePadding(top = basePadTop + bars.top)
+            insets
+        }
+        WindowInsetsControllerCompat(window, binding.root).isAppearanceLightStatusBars = false
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
