@@ -44,3 +44,11 @@ fun varLabel(template: Template?, key: String): String {
     val label = template?.vars?.firstOrNull { it.key == key }?.label?.trim()
     return if (!label.isNullOrEmpty()) label else key
 }
+
+/** Variables appearing in body that resolve to an empty string. */
+fun unresolvedVariables(body: String?, contact: Contact?, template: Template?, lang: String = "id"): List<String> {
+    val detected = detectVariables(body)
+    return detected.filter { key ->
+        resolve(key, contact, template, lang).isEmpty()
+    }
+}

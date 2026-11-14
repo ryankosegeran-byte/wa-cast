@@ -112,4 +112,10 @@ class VarsTest {
             render("Hari {{hari}}", contact, tpl, "en"),
         )
     }
+
+    @Test
+    fun testUnresolvedVariables() {
+        val unresolved = unresolvedVariables("Halo {{nama}}, tagihan {{total}} dan kode {{promo}}", contact, template)
+        assertEquals(listOf("promo"), unresolved)
+    }
 }

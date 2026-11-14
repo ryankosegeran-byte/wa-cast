@@ -81,4 +81,17 @@
     <string name="emoji_picker_title">Pilih Emoji</string>
     <string name="emoji_search_hint">Cari emoji...</string>
     <string name="recent_emojis">Terakhir Digunakan</string>
+
+    <!-- Preview Screen -->
+    <string name="preview_title">Pratinjau Pesan</string>
+    <string name="recipient_label">Penerima</string>
+    <string name="no_contacts_preview">Belum ada kontak. Buat atau impor kontak untuk melihat pratinjau pesan personal.</string>
+    <string name="no_template_preview">Belum ada template aktif. Buat template pesan terlebih dahulu.</string>
+    <string name="copy_message">Salin Pesan</string>
+    <string name="message_copied">Pesan disalin ke clipboard.</string>
+    <string name="send_single">Buka WhatsApp</string>
+    <string name="edit_template">Edit Template</string>
+    <string name="unresolved_vars_warning">Variabel belum terisi: %s</string>
+    <string name="chars_count">%d karakter</string>
+    <string name="no_message_body">(Template belum memiliki isi pesan)</string>
 </resources>
