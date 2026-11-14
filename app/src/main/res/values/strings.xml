@@ -175,4 +175,34 @@
     <string name="import_contacts_done">Ditambah %1$d, digabung %2$d, dilewati %3$d.</string>
     <string name="valid_row">Valid</string>
     <string name="invalid_row">Nomor Tidak Valid</string>
+
+    <!-- About & Help (WP9) -->
+    <string name="about_app_title">Tentang WhatsApp Cast</string>
+    <string name="about_app_version">Versi 1.0.0 (Native Android)</string>
+    <string name="about_features_title">Fitur Utama</string>
+    <string name="about_feature_1">Susun template WhatsApp dengan format *tebal*, _miring_, ~coret~, `kode`, dan emoji.</string>
+    <string name="about_feature_2">Dukungan variabel dinamis: {{nama}}, tanggal otomatis, dan nilai default kustom.</string>
+    <string name="about_feature_3">Manajemen kontak bertingkat: grup hierarki, subgrup, dan seleksi massal.</string>
+    <string name="about_feature_4">Pratinjau bubble WhatsApp interaktif sebelum pesan dikirim.</string>
+    <string name="about_feature_5">Pengiriman berurutan aman tanpa API berbayar dan tanpa risiko nomor diblokir.</string>
+    <string name="about_feature_6">Impor kontak dari file CSV atau VCF dengan deteksi pemisah otomatis.</string>
+    <string name="about_feature_7">Cadangan lokal 100% kompatibel dengan versi web (Schema 5).</string>
+    <string name="about_offline_note">100% Offline · Tanpa Server · Privasi Terjamin</string>
+    <string name="about_disclaimer">Bukan produk resmi WhatsApp dan tidak berafiliasi dengan Meta Inc.</string>
+    <string name="about_author_title">Pengembang</string>
+    <string name="about_author_name">Ryan Kosegeran</string>
+    <string name="about_github">GitHub Repositori</string>
+    <string name="about_privacy">Kebijakan Privasi</string>
+
+    <string name="help_dialog_title">Panduan Penggunaan</string>
+    <string name="help_step_1_title">1. Susun Template &amp; Variabel</string>
+    <string name="help_step_1_desc">Buka tab Susun, ketik pesan Anda, gunakan toolbar format teks atau emoji. Sisipkan {{nama}} atau buat variabel sendiri seperti {{total}} atau {{jatuh_tempo}}.</string>
+    <string name="help_step_2_title">2. Kelola Kontak &amp; Grup</string>
+    <string name="help_step_2_desc">Buka tab Kontak untuk menambah, mengedit, atau mengimpor kontak dari CSV/VCF. Kontak dapat dikelompokkan dalam label atau grup hierarki.</string>
+    <string name="help_step_3_title">3. Pratinjau Pesan</string>
+    <string name="help_step_3_desc">Tab Pratinjau menampilkan bubble chat WhatsApp seperti di layar asli. Pilih penerima di bagian atas untuk melihat variabel terisi secara otomatis.</string>
+    <string name="help_step_4_title">4. Kirim Pesan Berurutan</string>
+    <string name="help_step_4_desc">Buka tab Kirim, pilih target audiens. Tekan \'Kirim Berikutnya\' untuk membuka WhatsApp dengan pesan yang sudah terisi siap dikirim.</string>
+    <string name="help_step_5_title">5. Ekspor &amp; Impor Cadangan</string>
+    <string name="help_step_5_desc">Gunakan menu pojok kanan atas untuk mengekspor data ke file JSON atau memulihkan cadangan dari perangkat lain secara offline.</string>
 </resources>

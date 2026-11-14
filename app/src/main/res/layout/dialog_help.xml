@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="20dp">
+
+    <!-- Header -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/help_dialog_title"
+            android:textAppearance="?attr/textAppearanceHeadline6" />
+
+        <ImageButton
+            android:id="@+id/btn_close_help"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="@string/dismiss"
+            android:src="@drawable/ic_close"
+            app:tint="?android:attr/textColorSecondary" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginBottom="12dp"
+        android:background="#E5E7EB" />
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="340dp"
+        android:clipToPadding="false">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <!-- Step 1 -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/help_step_1_title"
+                android:textAppearance="?attr/textAppearanceSubtitle1"
+                android:textColor="@color/primary"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:text="@string/help_step_1_desc"
+                android:textColor="?android:attr/textColorSecondary"
+                android:textSize="13sp" />
+
+            <!-- Step 2 -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="14dp"
+                android:text="@string/help_step_2_title"
+                android:textAppearance="?attr/textAppearanceSubtitle1"
+                android:textColor="@color/primary"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:text="@string/help_step_2_desc"
+                android:textColor="?android:attr/textColorSecondary"
+                android:textSize="13sp" />
+
+            <!-- Step 3 -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="14dp"
+                android:text="@string/help_step_3_title"
+                android:textAppearance="?attr/textAppearanceSubtitle1"
+                android:textColor="@color/primary"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:text="@string/help_step_3_desc"
+                android:textColor="?android:attr/textColorSecondary"
+                android:textSize="13sp" />
+
+            <!-- Step 4 -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="14dp"
+                android:text="@string/help_step_4_title"
+                android:textAppearance="?attr/textAppearanceSubtitle1"
+                android:textColor="@color/primary"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:text="@string/help_step_4_desc"
+                android:textColor="?android:attr/textColorSecondary"
+                android:textSize="13sp" />
+
+            <!-- Step 5 -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="14dp"
+                android:text="@string/help_step_5_title"
+                android:textAppearance="?attr/textAppearanceSubtitle1"
+                android:textColor="@color/primary"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:text="@string/help_step_5_desc"
+                android:textColor="?android:attr/textColorSecondary"
+                android:textSize="13sp" />
+
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginBottom="8dp"
+        android:background="#E5E7EB" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_close_help_action"
+        style="@style/Widget.MaterialComponents.Button"
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
+        android:text="@string/dismiss" />
+
+</LinearLayout>

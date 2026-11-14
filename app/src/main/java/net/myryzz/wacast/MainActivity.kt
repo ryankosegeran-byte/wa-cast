@@ -29,8 +29,10 @@ import net.myryzz.wacast.core.parseCsv
 import net.myryzz.wacast.core.parseVcf
 import net.myryzz.wacast.core.syncGroups
 import net.myryzz.wacast.core.templateVarKeys
+import net.myryzz.wacast.ui.dialog.AboutDialog
 import net.myryzz.wacast.ui.dialog.ContactImportDialog
 import net.myryzz.wacast.ui.dialog.ExportDialog
+import net.myryzz.wacast.ui.dialog.HelpDialog
 import net.myryzz.wacast.ui.dialog.ImportDialog
 import net.myryzz.wacast.ui.preview.PreviewFragment
 import net.myryzz.wacast.ui.send.SendFragment
@@ -173,9 +175,12 @@ class MainActivity : AppCompatActivity() {
                 importContactsLauncher.launch(arrayOf("text/*", "*/*"))
                 true
             }
-            R.id.action_help,
+            R.id.action_help -> {
+                HelpDialog.newInstance().show(supportFragmentManager, HelpDialog.TAG)
+                true
+            }
             R.id.action_about -> {
-                Toast.makeText(this, getString(R.string.coming_soon), Toast.LENGTH_SHORT).show()
+                AboutDialog.newInstance().show(supportFragmentManager, AboutDialog.TAG)
                 true
             }
             else -> super.onOptionsItemSelected(item)
