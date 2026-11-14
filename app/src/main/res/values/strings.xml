@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">WhatsApp Cast</string>
+    <string name="placeholder_body">WhatsApp Cast\nScaffold ready.</string>
+</resources>
