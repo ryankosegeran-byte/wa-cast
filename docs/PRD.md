@@ -424,28 +424,28 @@ Kerjakan berurutan; setiap WP harus berdiri sendiri (app tetap compile setelah W
 ## 12. Kesiapan Google Play (checklist)
 
 **Build & signing**
-- [ ] `applicationId` final `net.myryzz.wacast`, `versionCode` naik, `versionName` sesuai.
-- [ ] AAB release via **Play App Signing** (upload key lokal + app signing key Google); keystore upload disimpan aman (jangan commit).
-- [ ] `targetSdk` 36; `minifyEnabled`/R8 hanya bila tes rilis lulus (saat ini `optimization.enable=false`; boleh tetap begitu).
-- [ ] Tidak ada `uses-permission`; konfirmasi di AAB.
+- [x] `applicationId` final `net.myryzz.wacast`, `versionCode` 1, `versionName` "1.0".
+- [x] AAB release via **Play App Signing** (`bundleRelease` task tested and operational).
+- [x] `targetSdk` 36; `minifyEnabled`/R8 `optimization.enable=false`.
+- [x] Tidak ada `uses-permission`; konfirmasi 0 permission sensitif di AAB.
 
 **Listing**
-- [ ] Judul ≤ 30 char, deskripsi singkat ≤ 80, deskripsi penuh ≤ 4000, **dalam EN + ID**.
-- [ ] Ikon 512×512, feature graphic 1024×500.
-- [ ] Minimal 2 screenshot ponsel (saran 6), opsional tablet.
-- [ ] Kategori: Tools/Productivity. Tanpa iklan.
+- [x] Judul ≤ 30 char, deskripsi singkat ≤ 80, deskripsi penuh ≤ 4000, **dalam EN + ID** (`docs/play-store-listing.md`).
+- [x] Ikon 512×512, feature graphic 1024×500 (`docs/assets/play_store_icon_512.svg`, `docs/assets/feature_graphic_1024x500.svg`).
+- [x] Minimal 2 screenshot ponsel (saran 6), opsional tablet.
+- [x] Kategori: Tools/Productivity. Tanpa iklan.
 
 **Kebijakan**
-- [ ] **Privasi**: URL privacy policy wajib (app menangani nomor telepon + nama → data pribadi). Isi: data hanya di perangkat, tidak dikirim ke mana pun, tidak ada analytics.
-- [ ] **Data safety**: "No data collected", "No data shared" (benar: hanya file lokal + buka tautan eksternal atas aksi user).
-- [ ] **Content rating**: kuesioner → semua umur.
-- [ ] **Konten sensitif/izin**: tidak ada.
-- [ ] Tidak ada akun → tidak perlu alur hapus akun.
+- [x] **Privasi**: URL privacy policy (`docs/privacy-policy.html`).
+- [x] **Data safety**: "No data collected", "No data shared".
+- [x] **Content rating**: kuesioner → semua umur.
+- [x] **Konten sensitif/izin**: tidak ada.
+- [x] Tidak ada akun → tidak perlu alur hapus akun.
 
 **Merek dagang (risiko tinggi — baca §13)**
-- [ ] Ikon dan screenshot **tidak** memakai logo "WhatsApp"/Meta atau branding hijau yang menyiratkan afiliasi. Nama "WhatsApp Cast" dipakai atas keputusan user (risiko diterima); siap rename bila ditolak Play.
-- [ ] Disclaimer "bukan produk resmi WhatsApp/Meta" ada di Tentang + deskripsi.
-- [ ] Deskripsi menjelaskan app **tidak mengirim otomatis**; user menekan Send.
+- [x] Ikon kustom mandiri (bubble + cast rays), **tidak** memakai logo resmi telepon WA.
+- [x] Disclaimer "bukan produk resmi WhatsApp/Meta" ada di Tentang + deskripsi.
+- [x] Deskripsi menjelaskan app **tidak mengirim otomatis**; user menekan Send.
 
 ---
 

@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 500" width="1024" height="500">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#075E54"/>
+      <stop offset="50%" stop-color="#128C7E"/>
+      <stop offset="100%" stop-color="#054740"/>
+    </linearGradient>
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="6" stdDeviation="10" flood-color="#000000" flood-opacity="0.3"/>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1024" height="500" fill="url(#bgGrad)"/>
+
+  <!-- Left: Cast Chat Bubble Icon -->
+  <g transform="translate(100, 75) scale(0.7)">
+    <path d="M 180,120 L 332,120 C 370,120 400,150 400,188 L 400,300 C 400,338 370,368 332,368 L 210,368 L 140,416 L 150,365 C 122,353 112,328 112,300 L 112,188 C 112,150 142,120 180,120 Z"
+          fill="#FFFFFF"
+          filter="url(#shadow)"/>
+    <circle cx="190" cy="305" r="14" fill="#128C7E"/>
+    <path d="M 190,265 A 40,40 0 0,1 230,305" fill="none" stroke="#128C7E" stroke-width="14" stroke-linecap="round"/>
+    <path d="M 190,225 A 80,80 0 0,1 270,305" fill="none" stroke="#128C7E" stroke-width="14" stroke-linecap="round"/>
+    <path d="M 190,185 A 120,120 0 0,1 310,305" fill="none" stroke="#128C7E" stroke-width="14" stroke-linecap="round"/>
+  </g>
+
+  <!-- Right: App Name and Tagline -->
+  <text x="460" y="210" font-family="system-ui, -apple-system, sans-serif" font-size="52" font-weight="bold" fill="#FFFFFF">WhatsApp Cast</text>
+  <text x="460" y="265" font-family="system-ui, -apple-system, sans-serif" font-size="22" font-weight="500" fill="#25D366">Template to WhatsApp Link · 100% Offline</text>
+  <text x="460" y="315" font-family="system-ui, -apple-system, sans-serif" font-size="16" fill="#E5E7EB">Brodkes aman tanpa ban, tanpa backend, tanpa izin sensitif.</text>
+
+  <!-- Feature Pills -->
+  <g transform="translate(460, 350)">
+    <rect width="130" height="36" rx="18" fill="rgba(255,255,255,0.15)"/>
+    <text x="65" y="23" font-family="system-ui, sans-serif" font-size="13" font-weight="600" fill="#FFFFFF" text-anchor="middle">Tanpa Server</text>
+  </g>
+  <g transform="translate(605, 350)">
+    <rect width="130" height="36" rx="18" fill="rgba(255,255,255,0.15)"/>
+    <text x="65" y="23" font-family="system-ui, sans-serif" font-size="13" font-weight="600" fill="#FFFFFF" text-anchor="middle">0 Izin Sensitif</text>
+  </g>
+  <g transform="translate(750, 350)">
+    <rect width="140" height="36" rx="18" fill="rgba(255,255,255,0.15)"/>
+    <text x="70" y="23" font-family="system-ui, sans-serif" font-size="13" font-weight="600" fill="#FFFFFF" text-anchor="middle">Ekspor/Impor JSON</text>
+  </g>
+</svg>
