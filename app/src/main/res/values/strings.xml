@@ -21,5 +21,29 @@
 
     <!-- Common UI -->
     <string name="dismiss">Tutup</string>
+    <string name="cancel">Batal</string>
+    <string name="delete">Hapus</string>
+    <string name="save">Simpan</string>
+    <string name="add">Tambah</string>
     <string name="coming_soon">Fitur ini akan aktif pada paket pengerjaan berikutnya.</string>
+
+    <!-- Templates Screen -->
+    <string name="template_search_hint">Cari template atau grup...</string>
+    <string name="new_template">Template Baru</string>
+    <string name="manage_groups">Kelola Grup</string>
+    <string name="all_groups">Semua grup</string>
+    <string name="no_group">Tanpa grup</string>
+    <string name="no_templates">Belum ada template</string>
+    <string name="no_templates_desc">Buat template pesan pertama Anda untuk mulai.</string>
+    <string name="no_matching_templates">Tidak ada template yang cocok.</string>
+    <string name="untitled">(Tanpa Judul)</string>
+    <string name="delete_template_confirm">Hapus template ini?</string>
+    <string name="delete_template_desc">Semua riwayat pengiriman dan nilai kontak untuk template ini akan dihapus.</string>
+    <string name="template_created">Template baru dibuat.</string>
+    <string name="template_deleted">Template dihapus.</string>
+    <string name="move_to_group">Pindah ke grup</string>
+    <string name="create_group">Grup baru</string>
+    <string name="group_name">Nama grup</string>
+    <string name="group_name_exists">Nama grup sudah ada.</string>
+    <string name="templates_moved">%d template dipindahkan.</string>
 </resources>
