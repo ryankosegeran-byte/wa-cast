@@ -46,4 +46,39 @@
     <string name="group_name">Nama grup</string>
     <string name="group_name_exists">Nama grup sudah ada.</string>
     <string name="templates_moved">%d template dipindahkan.</string>
+    <!-- Compose Screen -->
+    <string name="select_template">Pilih Template</string>
+    <string name="template_name_hint">Nama template...</string>
+    <string name="message_body_hint">Tulis pesan di sini. Gunakan {{nama}} atau buat variabel sendiri...</string>
+    <string name="template_group">Grup template</string>
+    <string name="variables_title">Variabel Pesan</string>
+    <string name="add_variable_hint">Nama variabel baru...</string>
+    <string name="var_label_hint">Nama tampilan</string>
+    <string name="var_default_hint">Nilai default/umum</string>
+    <string name="no_active_template">Pilih atau buat template terlebih dahulu.</string>
+    <string name="variables_hint">Klik chip di atas untuk menyisipkan ke kursor pesan.</string>
+
+    <!-- Auto Date Dialog -->
+    <string name="auto_date_title">Tanggal Otomatis</string>
+    <string name="auto_date_desc">Nilai diperbarui otomatis saat dikirim atau dipratinjau</string>
+    <string name="auto_none">Tidak ada (Manual)</string>
+    <string name="auto_none_hint">Diisi manual atau dari data kontak</string>
+    <string name="auto_preset_dateMonthYear">Tanggal, nama bulan, tahun</string>
+    <string name="auto_preset_monthName">Nama bulan</string>
+    <string name="auto_preset_year">Tahun</string>
+    <string name="auto_preset_monthNum">Nomor bulan (01–12)</string>
+    <string name="auto_preset_monthYear">Nomor bulan / tahun</string>
+    <string name="auto_preset_dayName">Nama hari</string>
+    <string name="auto_preset_numericDate">Tanggal angka (DD/MM/YYYY)</string>
+
+    <!-- Format Toolbar -->
+    <string name="format_bold">Tebal (*teks*)</string>
+    <string name="format_italic">Miring (_teks_)</string>
+    <string name="format_strike">Coret (~teks~)</string>
+    <string name="format_mono">Monospace (`teks`)</string>
+
+    <!-- Emoji Picker -->
+    <string name="emoji_picker_title">Pilih Emoji</string>
+    <string name="emoji_search_hint">Cari emoji...</string>
+    <string name="recent_emojis">Terakhir Digunakan</string>
 </resources>
